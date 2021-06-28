@@ -30,4 +30,20 @@ class HistoryController extends Controller
 
      	return view('history.detail', compact('pesanan','pesanan_details'));
     }
+    public function store(Request $request)
+    {
+        $this->validate($request, [
+		    
+			'file' => 'required|file|image|mimes:jpeg,png,jpg|max:2048',
+			'keterangan' => 'required',
+		]);
+		
+		$file = $request->file('file');
+
+		$nama_file = time()."_".$file->getClientOriginalName();
+
+      	        // isi dengan nama folder tempat kemana file diupload
+		$tujuan_upload = 'uploads';
+		$file->move($tujuan_upload,$nama_file);
+    }
 }

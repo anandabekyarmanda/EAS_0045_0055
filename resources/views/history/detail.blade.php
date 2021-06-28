@@ -16,10 +16,18 @@
         </div>
         <div class="col-md-12">
             <div class="card">
+                @if($pesanan->status == 1)
                 <div class="card-body">
                     <h3>Sukses Check Out</h3>
-                    <h5>Pesanan anda sudah sukses dicheck out selanjutnya untuk pembayaran silahkan transfer di rekening <strong>Bank BRI Nomer Rekening : 32113-821312-123</strong> dengan nominal : <strong>Rp. {{ number_format($pesanan->kode+$pesanan->jumlah_harga) }}</strong></h5>
+                    <h5>Pesanan anda sudah sukses dicheck out selanjutnya untuk pembayaran silahkan transfer di rekening <p>
+                    <strong>Bank Jatim Nomer Rekening : 0743471458</strong> dengan nominal : <strong>Rp. {{ number_format($pesanan->jumlah_harga) }}</strong></h5></p>
                 </div>
+                @else
+                <div class="card-body">
+                    <h3>Terima Kasih</h3>
+                    <h5>Pesanan sudah kami proses <p>
+                </div>
+                @endif
             </div>
             <div class="card mt-2">
                 <div class="card-body">
@@ -47,7 +55,7 @@
                                     <img src="{{ url('uploads') }}/{{ $pesanan_detail->barang->gambar }}" width="100" alt="...">
                                 </td>
                                 <td>{{ $pesanan_detail->barang->nama_barang }}</td>
-                                <td>{{ $pesanan_detail->jumlah }} kain</td>
+                                <td>{{ $pesanan_detail->jumlah }} Buah</td>
                                 <td align="right">Rp. {{ number_format($pesanan_detail->barang->harga) }}</td>
                                 <td align="right">Rp. {{ number_format($pesanan_detail->jumlah_harga) }}</td>
                                 
@@ -60,19 +68,18 @@
                                 
                             </tr>
                             <tr>
-                                <td colspan="5" align="right"><strong>Kode Unik :</strong></td>
-                                <td align="right"><strong>Rp. {{ number_format($pesanan->kode) }}</strong></td>
+                                <td colspan="5" align="right"><strong>Kode Pesanan :</strong></td>
+                                <td align="right"><strong> {{ number_format($pesanan->kode) }}</strong></td>
                                 
                             </tr>
                              <tr>
                                 <td colspan="5" align="right"><strong>Total yang harus ditransfer :</strong></td>
-                                <td align="right"><strong>Rp. {{ number_format($pesanan->kode+$pesanan->jumlah_harga) }}</strong></td>
+                                <td align="right"><strong>Rp. {{ number_format($pesanan->jumlah_harga) }}</strong></td>
                                 
                             </tr>
                         </tbody>
                     </table>
                     @endif
-
                 </div>
             </div>
         </div>

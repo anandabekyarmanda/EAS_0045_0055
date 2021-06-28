@@ -32,7 +32,8 @@ class PesanController extends Controller
     	//validasi apakah melebihi stok
     	if($request->jumlah_pesan > $barang->stok)
     	{
-    		return redirect('pesan/'.$id);
+            Alert::error('Permintaan Melebihi Stok Yang Tersedia', 'Gagal');
+            return redirect('pesan/'.$id);
     	}
 
     	//cek validasi
